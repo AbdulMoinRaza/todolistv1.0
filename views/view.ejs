@@ -1,0 +1,56 @@
+<%- include("partials/header.ejs") %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 
+
+<h1>Tasks Available</h1>
+
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+  <div class="list-group">
+    <div class="bd-example">
+      <table class="table table-hover">
+          <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task</th>
+          <th scope="col">Description</th>
+          <th scope="col">Note</th>
+          <th scope="col">Action</th>
+          <th scope="col">is Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for( let index = 0; index < data.length; index++ ) { %>     
+        <tr>
+          <th scope="row"><%=index+1 %></th>
+          <td><%=data[index].name %></td>
+          <td><%=data[index].note %></td>
+          <td><%=data[index].description %></td>
+         <td> 
+<% if (data[index].isdone) { %>
+<div class="form-check form-switch">
+<input action="/updateaction" method="POST" class="form-check-input" type="checkbox" role="switch" 
+id="done"  name = "done" + <%=index%> checked>
+<label class="form-check-label" for="flexSwitchCheckChecked">Done</label></div>
+<% } else {%>
+  <div class="form-check form-switch">
+    <input action="/updateaction" method="POST" class="form-check-input"  role="switch" type="checkbox"
+    id="done" name = "done" + <%=index%> >
+    <label class="form-check-label" for="flexSwitchCheckChecked">Done</label></div>
+<% } %>
+<script>
+document.getElementById("done").addEventListener("click", function() { 
+  data[index].isdone = true;
+  })
+</script>
+
+</td>
+<td><%= data[index].isdone %></td>
+</tr>
+</tbody>
+<% }%>    </table> 
+</div>
+</div>
+</div>
+
+
+<%- include("partials/footer.ejs") %>

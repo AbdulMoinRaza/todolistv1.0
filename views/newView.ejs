@@ -1,0 +1,67 @@
+<%- include("partials/header.ejs") %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/styles/checkbox.css"> 
+
+<h1> Tasks Available </h1>
+<p>
+  NOTE : Dleted task will perish once you UPDATE List.
+</p>
+
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
+  <div class="list-group">
+    <div class="bd-example">
+      <table class="table table-hover">
+          <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Task</th>
+          <th scope="col">Description</th>
+          <th scope="col">Note</th>
+          <th scope="col">Action</th>
+          <th scope="col">'X'</th>
+          <th scope="col">Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for( let index = 0; index < data.length; index++ ) { %>     
+        <tr class = "this-row<%=index%>" id="<%=index%>">
+          <th scope="row"  class="" > <%=index+1 %></th>
+          <td  ><%=data[index].name %></td>
+          <td  class=""><%=data[index].note %></td>
+          <td  class=""><%=data[index].description %></td>
+          <td  class=""> 
+            <label class="container">
+                <% if (data[index].isdone) { %>
+                <input type="checkbox" class="cbox" checked id = "cid<%=index%>" >
+                <% } %>
+                <% if (!data[index].isdone) { %>
+                    <input type="checkbox" class="cbox" id = "cid<%=index%>" >
+                    <% } %>
+                <span class="checkmark"></span>
+            </label>
+          </td>
+          <td  class=""> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" 
+          class="bi bi-trash3" id="<%=index%>" viewBox="0 0 16 16">
+          <rect x="1rem" y="0" width="25" height="25" fill="transparent" stroke="none" stroke-width="0"/>
+          <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+          </svg>
+            </td>
+          <td class="isDone this-row <%=index%>" > <%= data[index].isdone %> </td>
+
+</tr>
+</tbody>
+<% }%>    
+</table> 
+</div>
+</div>
+</div>
+<% for( let index = 0; index < 26; index++ ) { %>
+  <button type="button" class="btn btn-outline-light"></button>
+<% } %>
+<button type="button" class="btn btn-success">Update</button>
+
+<%- include("partials/footer.ejs") %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../js/action.js"></script>
+

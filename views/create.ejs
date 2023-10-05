@@ -1,0 +1,35 @@
+
+<head>  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/content.css">
+</head>
+<%- include("partials/header.ejs") %>
+
+
+<h1>Task Handling made EASY</h1>
+
+<!-- TASK CREATION FORM -->
+<form action="/submit" method="POST">
+  <div class="mb-3">
+    <label for="egInputTaskName1" class="form-label">Task Name</label>
+    <input type="text" name="name" class="form-control" id="exampleInputEmail1" required>
+    <div id="emailHelp" class="form-text">Naming Tasks helps you keep yourself organised.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="egInputTaskDes1" class="form-label">Description</label>
+    <input type="text" name="description" class="form-control" id="exampleInputPassword1">
+  </div>
+  
+  <div class="mb-3">
+    <label for="egInputTaskName1" class="form-label">Note</label>
+    <input type="text" name="note" class="form-control" id="exampleInputEmail1" >
+    <div id="emailHelp" class="form-text">This note is displayed everytime you view your tasks.</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+
+  <%- include("partials/footer.ejs") %>
